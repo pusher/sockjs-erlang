@@ -6,12 +6,12 @@
 
 -spec encode(any()) -> iodata().
 encode(Thing) ->
-    mochijson2_fork:encode(Thing).
+    jiffy:encode(Thing).
 
 -spec decode(iodata()) -> {ok, any()} | {error, any()}.
 decode(Encoded) ->
-    try mochijson2_fork:decode(Encoded) of
+    try jiffy:decode(Encoded) of
         V -> {ok, V}
     catch
-        _:E -> {error, E}
+        E -> E
     end.
